@@ -1,38 +1,391 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Homepage - Tomás Alagoa</title>
-  <link rel="stylesheet" href="src/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tomás Alagoa — Cybersecurity & Software Engineer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
-
 <body>
-  <div class="topnav">
-    <a class="active" href="index.html">Home</a>
-    <a href="contact.html">Contact</a>
-  </div>
 
-  <h1>Homepage</h1>
-  <hr />
-  <div class="text-box">
-    <p>
-      Hello, my name is Tomás Alagoa and I'm currently pursuing a Master's degree in Computer Engineering with a
-      specialization in Cyber Security
-      at <a href="https://tecnico.ulisboa.pt/">Instituto Superior Técnico</a>.
-    </p>
-  </div>
+  <!-- Noise overlay -->
+  <div class="noise"></div>
 
-  <br>
+  <!-- Grid background -->
+  <div class="grid-bg"></div>
 
-  <div class="text-box">
-    <p>
-      I've worked as a Developer at
-      <a href="http://www.maretec.org/">MARETEC</a> and am a member of
-      <a href="https://sectt.github.io/">STT</a> (Security Team @ Técnico).
-    </p>
-  </div>
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <span class="nav-logo">ta<span class="blink">_</span></span>
+      <ul class="nav-links">
+        <li><a href="#about">about</a></li>
+        <li><a href="#experience">experience</a></li>
+        <li><a href="#skills">skills</a></li>
+        <li><a href="#education">education</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#about">about</a>
+      <a href="#experience">experience</a>
+      <a href="#skills">skills</a>
+      <a href="#education">education</a>
+      <a href="#contact">contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <p class="hero-pre"><span class="prompt">~/</span> whoami</p>
+      <h1 class="hero-name">Tomás<br/>Alagoa</h1>
+      <p class="hero-tagline">Cybersecurity &amp; Software Engineer</p>
+      <p class="hero-location">📍 Lisbon, Portugal</p>
+      <div class="hero-links">
+        <a href="https://github.com/tomasalagoa" target="_blank" class="hero-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/tomasalagoa" target="_blank" class="hero-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:tomas.alagoa@gmail.com" class="hero-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          Email
+        </a>
+      </div>
+    </div>
+    <div class="scroll-hint">scroll<span class="scroll-arrow">↓</span></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="section-label"><span class="prompt">//</span> about</div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a cybersecurity and software engineer based in Lisbon, currently working at <strong>ICT Strypes Portugal</strong>, building robust software with Python and C++.
+          </p>
+          <p>
+            My background spans vulnerability research, static analysis, and full-stack development. I wrote my Master's thesis on <em>Vulnerability Detection in Multiple Languages</em>, extending a static analysis tool for blockchain software and smart contracts at <strong>INESC-ID</strong>.
+          </p>
+          <p>
+            Beyond the day job, I've been part of Técnico's Security CTF team since 2017 — competing in Reverse Engineering, Forensics, and Cryptography challenges.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-num">8+</span>
+            <span class="stat-label">years in security</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">4</span>
+            <span class="stat-label">companies worked at</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">MSc</span>
+            <span class="stat-label">Computer Science &amp; Eng.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-inner">
+      <div class="section-label"><span class="prompt">//</span> experience</div>
+
+      <div class="timeline">
+
+        <div class="timeline-item" data-index="0">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-header">
+              <div>
+                <h3 class="tl-role">Software Engineer</h3>
+                <p class="tl-company">ICT Strypes Portugal</p>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">2025 — Ongoing</span>
+                <span class="tl-location">Lisbon, PT</span>
+              </div>
+            </div>
+            <p class="tl-desc">Working as a software engineer delivering software development services, deepening expertise in Python and C++ while adopting industry best practices in a professional engineering environment.</p>
+            <div class="tl-tags">
+              <span class="tag">Python</span>
+              <span class="tag">C++</span>
+              <span class="tag">Software Engineering</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-index="1">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-header">
+              <div>
+                <h3 class="tl-role">Researcher</h3>
+                <p class="tl-company">INESC-ID</p>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">Nov 2024 — Jun 2025</span>
+                <span class="tl-location">Lisbon, PT</span>
+              </div>
+            </div>
+            <p class="tl-desc">Adapted a static analysis tool to detect vulnerabilities in blockchain software and smart contracts. This research formed the core of my Master's thesis on vulnerability detection across multiple languages.</p>
+            <div class="tl-tags">
+              <span class="tag">Static Analysis</span>
+              <span class="tag">Blockchain</span>
+              <span class="tag">Smart Contracts</span>
+              <span class="tag">Security</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-index="2">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-header">
+              <div>
+                <h3 class="tl-role">Cybersecurity Intern</h3>
+                <p class="tl-company">UNICRE</p>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">Jul 2024</span>
+                <span class="tl-location">Lisbon, PT</span>
+              </div>
+            </div>
+            <p class="tl-desc">Experienced cybersecurity in a real enterprise environment, bridging academic theory with corporate practice in an organization operating in the financial sector.</p>
+            <div class="tl-tags">
+              <span class="tag">Cybersecurity</span>
+              <span class="tag">Enterprise</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-index="3">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-header">
+              <div>
+                <h3 class="tl-role">Software Developer</h3>
+                <p class="tl-company">MARETEC</p>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">2019 — 2021</span>
+                <span class="tl-location">Lisbon, PT</span>
+              </div>
+            </div>
+            <p class="tl-desc">Part of IST's cluster of research companies, focused on modelling marine and land systems with geographical data.</p>
+            <ul class="tl-list">
+              <li>Built an internal tool for monitoring and executing geographic calculations in Python</li>
+              <li>Developed and extended a website with geospatial visualisation libraries in JavaScript</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tag">Python</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">GIS</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-inner">
+      <div class="section-label"><span class="prompt">//</span> skills</div>
+
+      <div class="skills-grid">
+
+        <div class="skill-group">
+          <p class="skill-level">Proficient</p>
+          <div class="skill-bar-group">
+            <div class="skill-bar-item">
+              <span>C++</span>
+              <div class="bar"><div class="bar-fill" data-w="95"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <span>Python</span>
+              <div class="bar"><div class="bar-fill" data-w="95"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <span>Linux</span>
+              <div class="bar"><div class="bar-fill" data-w="92"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-level">Advanced</p>
+          <div class="skill-bar-group">
+            <div class="skill-bar-item">
+              <span>Java</span>
+              <div class="bar"><div class="bar-fill" data-w="78"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <span>C</span>
+              <div class="bar"><div class="bar-fill" data-w="78"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <span>Rust</span>
+              <div class="bar"><div class="bar-fill" data-w="75"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <span>Git</span>
+              <div class="bar"><div class="bar-fill" data-w="82"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <span>Docker</span>
+              <div class="bar"><div class="bar-fill" data-w="76"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <span>SQL</span>
+              <div class="bar"><div class="bar-fill" data-w="74"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-level">Intermediate</p>
+          <div class="skill-bar-group">
+            <div class="skill-bar-item">
+              <span>Kotlin</span>
+              <div class="bar"><div class="bar-fill" data-w="58"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <span>Go</span>
+              <div class="bar"><div class="bar-fill" data-w="55"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <span>Zig</span>
+              <div class="bar"><div class="bar-fill" data-w="50"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <span>JavaScript</span>
+              <div class="bar"><div class="bar-fill" data-w="60"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="domains">
+        <div class="domain-card">
+          <div class="domain-icon">🔐</div>
+          <h4>Security</h4>
+          <p>Reverse engineering, cryptography, forensics, CTF, static analysis, vulnerability research</p>
+        </div>
+        <div class="domain-card">
+          <div class="domain-icon">⚙️</div>
+          <h4>Systems</h4>
+          <p>Low-level C/C++/Rust, Linux, distributed systems, blockchain analysis</p>
+        </div>
+        <div class="domain-card">
+          <div class="domain-icon">🌐</div>
+          <h4>Full-stack</h4>
+          <p>Web development, GIS tools, cloud infrastructure, containerisation</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-inner">
+      <div class="section-label"><span class="prompt">//</span> education</div>
+
+      <div class="edu-grid">
+
+        <div class="edu-card">
+          <div class="edu-badge">MSc</div>
+          <div class="edu-body">
+            <h3>Computer Science &amp; Engineering</h3>
+            <p class="edu-school">Instituto Superior Técnico</p>
+            <p class="edu-date">2023 – 2025 · Lisbon, Portugal</p>
+            <ul>
+              <li>Specialization in Cybersecurity and Distributed Systems</li>
+              <li>Thesis: <em>Vulnerability Detection in Multiple Languages</em></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <div class="edu-badge edu-badge--alt">CTF</div>
+          <div class="edu-body">
+            <h3>Security Team @ Técnico</h3>
+            <p class="edu-school">Instituto Superior Técnico</p>
+            <p class="edu-date">2017 – 2025 · Lisbon, Portugal</p>
+            <ul>
+              <li>Competed in Reverse Engineering, Forensics, and Cryptography challenges</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="languages-block">
+        <div class="section-sublabel">Languages</div>
+        <div class="lang-list">
+          <div class="lang-item">
+            <span class="lang-name">Portuguese</span>
+            <span class="lang-level">Native</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">English</span>
+            <span class="lang-level">Fluent</span>
+          </div>
+          <div class="lang-item">
+            <span class="lang-name">Spanish</span>
+            <span class="lang-level">Intermediate</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner contact-inner">
+      <div class="section-label"><span class="prompt">//</span> contact</div>
+      <h2 class="contact-heading">Let's work together.</h2>
+      <p class="contact-sub">Open to interesting security and software engineering roles or research collaborations.</p>
+      <div class="contact-links">
+        <a href="mailto:tomas.alagoa@gmail.com" class="contact-btn">
+          tomas.alagoa@gmail.com
+        </a>
+        <div class="contact-socials">
+          <a href="https://github.com/tomasalagoa" target="_blank" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/tomasalagoa" target="_blank" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="mono">© 2025 Tomás Alagoa</span>
+    <span class="mono footer-note">Built with HTML, CSS &amp; JS</span>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
-<!-- Small comment for you :)-->
-
 </html>
