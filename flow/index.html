@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request flow | Tomás Alagoa</title>
+  <meta name="description" content="Tomás Alagoa, cybersecurity and software engineer in Lisbon." />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Request flow | Tomás Alagoa" />
+  <meta property="og:description" content="Follow a web request through a server, with and without validation." />
+  <meta property="og:url" content="https://tomasalagoa.github.io/flow/" />
+  <meta property="og:image" content="https://tomasalagoa.github.io/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV,SHRP@200..500,0,0..100&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-in">
+      <a class="wordmark" href="../index.html">Tomás Alagoa</a>
+      <nav aria-label="Main">
+        <a href="../index.html#record">Record</a>
+        <a href="../writeups/">Write-ups</a>
+        <a href="./" aria-current="page">Request flow</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#learning">Learning</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <header class="container page-head">
+      <h1>Request flow</h1>
+      <p class="lead">Follow a web request through a server, with and without validation.</p>
+    </header>
+    <section class="container flowwrap">
+      <div class="panel flowpanel">
+        <div class="flowcol">
+          <svg viewBox="10 60 680 310" class="flow" role="group" aria-label="A web request as a code-flow graph. Hover or focus a node or edge for an explanation.">
+            <g class="edge" data-a="request" data-b="router" data-info="Request goes to the router."><path class="hit" d="M70 210 L200 210"/><path class="line" d="M70 210 L200 210"/></g>
+          <g class="edge" data-a="router" data-b="auth" data-info="The router hands the request to the auth check."><path class="hit" d="M200 210 L330 210"/><path class="line" d="M200 210 L330 210"/></g>
+          <g class="edge" data-a="auth" data-b="parse" data-info="Only authenticated requests get parsed."><path class="hit" d="M330 210 L460 210"/><path class="line" d="M330 210 L460 210"/></g>
+          <g class="edge" data-a="parse" data-b="validate" data-info="Parsed fields go to validation."><path class="hit" d="M460 210 L460 90"/><path class="line" d="M460 210 L460 90"/></g>
+          <g class="edge" data-a="validate" data-b="query" data-info="Clean path: validated fields reach the query."><path class="hit" d="M460 90 L610 210"/><path class="line" d="M460 90 L610 210"/></g>
+          <g class="edge bad" data-a="parse" data-b="query" data-info="Unchecked path: parse reaches query without validate. This is what a taint analysis reports."><path class="hit" d="M460 210 L610 210"/><path class="line" d="M460 210 L610 210"/></g>
+          <g class="edge" data-a="query" data-b="database" data-info="The query is sent to the database."><path class="hit" d="M610 210 L610 340"/><path class="line" d="M610 210 L610 340"/></g>
+          <g class="edge" data-a="database" data-b="response" data-info="Results flow back into the response."><path class="hit" d="M610 340 L460 340"/><path class="line" d="M610 340 L460 340"/></g>
+          <g class="node" id="n-request" tabindex="0" data-id="request" data-info="Untrusted input enters here. A taint analysis marks it as a source." transform="translate(70 210)"><rect x="-48" y="-19" width="96" height="38" rx="4"/><text y="5" text-anchor="middle">request</text></g>
+          <g class="node" id="n-router" tabindex="0" data-id="router" data-info="Maps the URL to a handler. No data is checked yet." transform="translate(200 210)"><rect x="-48" y="-19" width="96" height="38" rx="4"/><text y="5" text-anchor="middle">router</text></g>
+          <g class="node" id="n-auth" tabindex="0" data-id="auth" data-info="Checks who is calling before anything else runs." transform="translate(330 210)"><rect x="-48" y="-19" width="96" height="38" rx="4"/><text y="5" text-anchor="middle">auth</text></g>
+          <g class="node" id="n-parse" tabindex="0" data-id="parse" data-info="Turns raw bytes into fields. The fields are still untrusted." transform="translate(460 210)"><rect x="-48" y="-19" width="96" height="38" rx="4"/><text y="5" text-anchor="middle">parse</text></g>
+          <g class="node" id="n-validate" tabindex="0" data-id="validate" data-info="Rejects or cleans input. Taint ends here when this step runs." transform="translate(460 90)"><rect x="-48" y="-19" width="96" height="38" rx="4"/><text y="5" text-anchor="middle">validate</text></g>
+          <g class="node" id="n-query" tabindex="0" data-id="query" data-info="Builds the SQL string. Tainted data reaching this node is an injection." transform="translate(610 210)"><rect x="-48" y="-19" width="96" height="38" rx="4"/><text y="5" text-anchor="middle">query</text></g>
+          <g class="node" id="n-database" tabindex="0" data-id="database" data-info="The sink. A clean path and one unchecked path both reach it." transform="translate(610 340)"><rect x="-48" y="-19" width="96" height="38" rx="4"/><text y="5" text-anchor="middle">database</text></g>
+          <g class="node" id="n-response" tabindex="0" data-id="response" data-info="Output must be encoded here, or stored input becomes XSS." transform="translate(460 340)"><rect x="-48" y="-19" width="96" height="38" rx="4"/><text y="5" text-anchor="middle">response</text></g>
+          </svg>
+          <p class="caption" aria-live="polite">Hover, touch or tab through the graph.</p>
+        </div>
+        <div class="stepcol">
+          <p class="runtitle">Request, step by step</p>
+          <ol class="steps"></ol>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="container foot"><span>Tomás Alagoa, Lisbon</span><span>Built with HTML and CSS</span></footer>
+<script>
+(() => {
+  const svg = document.querySelector('.flow'); if (!svg) return;
+  const cap = document.querySelector('.caption'), idle = cap.textContent;
+  const list = document.querySelector('.steps'), title = document.querySelector('.runtitle');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const nodes = [...svg.querySelectorAll('.node')], edges = [...svg.querySelectorAll('.edge')];
+  const node = (id) => svg.getElementById('n-' + id), edge = (k) => edges.find(e => e.dataset.a + '-' + e.dataset.b === k);
+  const labels = new Map(nodes.map(n => [n, n.querySelector('text').textContent]));
+
+  const clear = () => { svg.querySelectorAll('.active').forEach(e => e.classList.remove('active')); cap.textContent = idle; cap.classList.remove('bad'); };
+  const show = (el) => {
+    svg.querySelectorAll('.active').forEach(e => e.classList.remove('active'));
+    el.classList.add('active'); cap.textContent = el.dataset.info; cap.classList.toggle('bad', el.classList.contains('bad'));
+    if (el.classList.contains('edge')) { node(el.dataset.a).classList.add('active'); node(el.dataset.b).classList.add('active'); }
+    else edges.forEach(e => { if (e.dataset.a === el.dataset.id || e.dataset.b === el.dataset.id) e.classList.add('active'); });
+  };
+  [...nodes, ...edges].forEach(el => {
+    el.addEventListener('pointerenter', () => show(el));
+    el.addEventListener('pointerdown', () => show(el));
+    el.addEventListener('focus', () => show(el));
+    el.addEventListener('blur', clear);
+  });
+  svg.addEventListener('pointerleave', clear);
+
+  // Each run is a list of steps; the ball visits one node per step and the list lights up in time.
+  const START = [['request', 0, 'Untrusted input enters the system.'], ['router', 0, 'The URL is mapped to a handler.'], ['auth', 0, 'The caller is identified before anything runs.'], ['parse', 0, 'Fields are read. They are still untrusted.']];
+  const RUNS = [
+    { name: 'Safe run: the input is validated', steps: [...START,
+      ['validate', 'ok', 'Input is validated, so the taint ends here.'],
+      ['query', 'ok', 'The query is built from clean input.'],
+      ['database', 'ok', 'The database answers normally.'],
+      ['response', 'ok', 'The response is safe. Nothing leaks.']] },
+    { name: 'Unsafe run: validate is skipped', steps: [...START,
+      ['query', 'err', 'Unchecked path: parse reaches the query without validate. Tainted input makes this an injection.'],
+      ['database', 'err', 'The database errors, or runs the attacker’s SQL.', 'crashed'],
+      ['response', 'err', 'Sensitive data leaves in the response.', 'leaked']] },
+  ];
+  const build = (run) => {
+    title.textContent = run.name; title.className = 'runtitle';
+    list.innerHTML = run.steps.map(([id, , text], i) => '<li><span class="sn">' + (i + 1) + '</span><div><b>' + labels.get(node(id)) + '</b><span>' + text + '</span></div></li>').join('');
+    return [...list.children];
+  };
+  const reset = () => {
+    nodes.forEach(n => { n.classList.remove('ok', 'err', 'visited'); n.querySelector('text').textContent = labels.get(n); });
+    edges.forEach(e => e.classList.remove('ok', 'err', 'visited'));
+  };
+  const light = (run, items, i) => {
+    const [id, state, , label] = run.steps[i], n = node(id), li = items[i];
+    items.forEach(x => x.classList.remove('now')); li.classList.add('now', state || 'done');
+    n.classList.add('visited'); if (state) n.classList.add(state); if (label) n.querySelector('text').textContent = label;
+    if (i > 0) { const e = edge(run.steps[i - 1][0] + '-' + id); e.classList.add('visited'); if (state) e.classList.add(state); }
+    if (state) title.classList.add(state);
+    return state;
+  };
+
+  if (reduce) { const run = RUNS[1], items = build(run); list.classList.add('all'); run.steps.forEach((_, i) => light(run, items, i)); items.forEach(x => x.classList.remove('now')); return; }
+
+  const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); dot.setAttribute('r', 5); dot.setAttribute('class', 'pulse'); svg.insertBefore(dot, svg.querySelector('.node'));
+  const pos = (id) => node(id).getAttribute('transform').match(/-?\d+/g).map(Number);
+  const SPEED = 140, DWELL = 1400, HOLD = 3600;
+  let ri = 0, run, items, i, d, wait, path, len;
+  const begin = () => {
+    reset(); run = RUNS[ri]; items = build(run); i = 0; d = 0; path = null;
+    const [x, y] = pos(run.steps[0][0]); dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('class', 'pulse'); dot.style.opacity = 1;
+    light(run, items, 0); wait = performance.now() + DWELL;
+  };
+  begin();
+  let last = performance.now();
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if (wait) {
+      if (now >= wait) {
+        wait = 0;
+        if (i >= run.steps.length - 1) { ri = (ri + 1) % RUNS.length; begin(); }
+        else { path = edge(run.steps[i][0] + '-' + run.steps[i + 1][0]).querySelector('.line'); len = path.getTotalLength(); d = 0; }
+      }
+    } else if (path) {
+      d += SPEED * dt;
+      const pt = path.getPointAtLength(Math.min(d, len)); dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y);
+      if (d >= len) {
+        i++; path = null; const state = light(run, items, i);
+        if (state) dot.setAttribute('class', 'pulse ' + state);
+        wait = now + (i >= run.steps.length - 1 ? HOLD : DWELL);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
